@@ -1,0 +1,610 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+section {
+  margin: 50px 0;
+}
+h1 {
+  display: flex;
+  flex-direction: column;
+  font-family: "Syne";
+  font-size: 22px;
+  font-weight: 800;
+  color: #b1663c;
+}
+h1 > span {
+  font-family: "Work Sans";
+  font-size: 10px;
+  letter-spacing: 0.1em;
+}
+h2 {
+  font-family: "Syne";
+  font-weight: 700;
+  font-size: 30px;
+  color: #1d6154;
+}
+nav ul {
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+}
+nav li {
+  padding: 0 10px;
+  font-size: 1.2em;
+}
+/** end reset css**/
+
+/*********modification pour couleur de fond***********/
+main {
+  max-width: 1140px;
+  margin: auto;
+  font-family: "Work Sans";
+  font-size: 14px;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  padding-top: 50px;
+  max-width: 1140px;
+}
+body {
+  background-color: #fffef8;
+}
+footer {
+  background-color: white;
+  padding: 10px;
+  margin: 0;
+}
+/*************************************************************/
+/**********modification de la couleur du login , contact et projet au hover**********/
+.login_logout,
+.projet,
+.login {
+  text-decoration: none;
+  color: black;
+}
+.icons:hover {
+  cursor: pointer;
+}
+.login_logout:hover,
+.projet:hover,
+.login:hover,
+li:hover {
+  color: #b1663c;
+  cursor: pointer;
+} /*******************************************************/
+/***********ajout des filtres***********/
+.groupefiltre {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 50px;
+  gap: 15px;
+}
+.filtre {
+  font-family: "Syne";
+  font-size: 16px;
+  font-weight: 700;
+  color: #1d6154;
+  background-color: white;
+  border: 1px solid #1d6154;
+  border-radius: 50px;
+  padding: 10px 20px 10px 20px;
+}
+.filtre_actif {
+  color: white;
+  background-color: #1d6154;
+}
+.filtre:hover {
+  color: white;
+  background-color: #1d6154;
+  cursor: pointer;
+}
+/***********************************************/
+/**********position de Mentions legales**********/
+.mentionslegales {
+  padding-right: 10%;
+}
+/*****************************************************/
+/**************Page Login***************/
+.position_login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 170px 0px 140px 0px;
+}
+.position_input {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin: 50px 0px 50px 0px;
+  width: 35%;
+}
+.input_login {
+  gap: 10px;
+  border: none;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+  padding: 15px;
+}
+.bouton_connecter {
+  background-color: #1d6154;
+  font-size: 15px;
+  font-weight: 800;
+  color: white;
+  width: 15%;
+  height: 36px;
+  border-radius: 60px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+.MdeP {
+  color: #3d3d3d;
+}
+.message_erreur {
+  color: red;
+  font-size: 20px;
+  font-weight: 900;
+  padding-bottom: 50px;
+  visibility: hidden;
+}
+.footer_login {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+/***********************************************/
+/*****ajout des boutons d'acces a la modal *****/
+.bouton_modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1px;
+  height: 30px;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 100;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: none;
+}
+.marge_modal {
+  padding-top: 7px;
+}
+.modal-button i {
+  font-size: 20px;
+  font-weight: 100;
+  padding-right: 10px;
+}
+.bouton_presentation {
+  margin-left: 10%;
+}
+.groupe_bouton_h2 {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  gap: 25px;
+  margin: 70px 0px 50px 0px;
+}
+/*********************************************/
+/*****creation de la fenetre dialog*****/
+.presentation_modal {
+  width: 630px;
+  border-radius: 10px;
+  border: none;
+  animation: apparitionmodal 0.3s both 0.1s;
+}
+.position_icon_croix {
+  position: absolute;
+  font-size: 30px;
+  font-weight: 600;
+  top: 25px;
+  right: 30px;
+  cursor: pointer;
+}
+.modal_boite {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+  min-width: 500px;
+  height: 95%;
+  margin: 25px;
+}
+h3 {
+  font-family: "Work Sans";
+  font-size: 30px;
+  font-weight: 600;
+  margin-top: 20px;
+}
+.images_modal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 70%;
+  padding-top: 30px;
+  padding-bottom: 20px;
+}
+.images_modal img {
+  width: 80px;
+  height: 120px;
+}
+.ligne {
+  border: 1px solid #b3b3b3;
+  width: 80%;
+  margin-top: 15px;
+}
+.modal_ajouter {
+  width: 240px;
+  background-color: #1d6154;
+  font-family: "Syne";
+  font-size: 15px;
+  color: white;
+  border-radius: 60px;
+  padding: 10px 15px 10px 15px;
+  border: 1px solid #1d6154;
+  margin-top: 40px;
+  margin-bottom: 30px;
+  cursor: pointer;
+}
+.modal_supprimer {
+  font-family: "Syne";
+  font-size: 15px;
+  color: #d65353;
+  cursor: pointer;
+}
+@keyframes apparitionmodal {
+  from {
+    transform: translateY(-900px);
+  }
+  to {
+    transform: translateY(0px);
+  }
+}
+.position_travail_modal {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  gap: 10px;
+}
+.icon_trash {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  cursor: pointer;
+}
+.icon_arrow {
+  position: absolute;
+  top: 5px;
+  right: 26px;
+  visibility: hidden;
+}
+.icon_trash,
+.icon_arrow {
+  position: absolute;
+  color: white;
+  background-color: black;
+  font-size: 15px;
+  padding: 3px;
+  border-radius: 2px;
+}
+.position_travail_modal:hover .icon_arrow {
+  visibility: visible;
+}
+/******************************************************/
+/*****fenetre ajout de traveaux******/
+.modal_fleche_retour {
+  position: absolute;
+  font-size: 30px;
+  font-weight: 600;
+  top: 25px;
+  left: 30px;
+  cursor: pointer;
+}
+form {
+  width: 85%;
+}
+.modal_ajout_de_travaux {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.modal_ajout_image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px;
+  background-color: #e8f1f6;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  height: 170px;
+  width: 100%;
+}
+.image_selectionne {
+  width: 129px;
+  height: 170px;
+  object-fit: cover;
+  display: none;
+}
+.modal_ajout_image i {
+  font-size: 70px;
+  color: #b9c5cc;
+}
+.modal_ajout_image p {
+  font-size: 10px;
+}
+.modal_ajout_image input {
+  display: none;
+}
+.forme_ajouter_photo {
+  display: flex;
+  justify-content: center;
+  color: #306685;
+  width: 173px;
+  font-size: 14px;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  padding: 10px 25px;
+  border-radius: 20px;
+  background-color: #cbd6dc;
+  cursor: pointer;
+}
+.modal_ajout_titre_categorie {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding-bottom: 15px;
+  padding-top: 20px;
+}
+input[type="text"],
+select {
+  background-color: white;
+  box-shadow: 0px 4px 14px 0px #00000017;
+  padding: 15px;
+  border: none;
+}
+select {
+  margin-bottom: 50px;
+}
+.message_remplir_champs,
+.message_valide,
+.message_erreure_envoi {
+  padding-bottom: 20px;
+}
+.message_remplir_champs,
+.message_erreure_envoi {
+  color: red;
+  display: none;
+}
+.bouton_valide_ajout {
+  font-family: "Syne";
+  color: white;
+  font-size: 14px;
+  width: 237px;
+  font-weight: 700;
+  margin-top: 30px;
+  padding: 10px;
+  border: none;
+  border-radius: 50px;
+  background-color: #A7A7A7;
+  cursor: pointer;
+}
+.bouton_valide_ajout_color {
+  background-color: #1d6154;
+  
+}
+.message_valide {
+  color: #1d6154;
+  display: none;
+}
+/***********************************************/
+/*********fin d'ajout du css************/
+/*********************************************/
+#introduction {
+  display: flex;
+  align-items: center;
+}
+#introduction figure {
+  flex: 1;
+}
+#introduction img {
+  display: block;
+  margin: auto;
+  width: 80%;
+}
+#introduction article {
+  flex: 1;
+}
+#introduction h2 {
+  margin-bottom: 1em;
+}
+#introduction p {
+  margin-bottom: 0.5em;
+}
+#portfolio h2 {
+  text-align: center;
+  margin-bottom: 1em;
+}
+.gallery {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+}
+.gallery img {
+  width: 100%;
+}
+#contact {
+  width: 50%;
+  margin: auto;
+}
+#contact > * {
+  text-align: center;
+}
+#contact h2 {
+  margin-bottom: 20px;
+}
+#contact form {
+  text-align: left;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+}
+#contact input {
+  height: 50px;
+  font-size: 1.2em;
+  border: none;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+#contact label {
+  margin: 2em 0 1em 0;
+}
+#contact textarea {
+  border: none;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+input[type="submit"] {
+  font-family: "Syne";
+  font-weight: 700;
+  color: white;
+  background-color: #1d6154;
+  margin: 2em auto;
+  width: 180px;
+  text-align: center;
+  border-radius: 60px;
+}
+footer nav ul {
+  display: flex;
+  justify-content: flex-end;
+  margin: 2em;
+}
