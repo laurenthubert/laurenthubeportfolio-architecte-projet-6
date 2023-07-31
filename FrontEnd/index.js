@@ -203,7 +203,7 @@ function fenetreajoutdetravaux() {
           <i class="fa-solid fa-arrow-left modal_fleche_retour"></i>
           <div class="modal_ajout_de_travaux">
               <h3>Ajout photo</h3>
-              <form action=""> 
+              <form class="validation_couleur" action=""> 
                   <div class="modal_ajout_image">
                       <i class="fa-sharp fa-regular fa-image "></i>
                        <img src="" class="image_selectionne">
@@ -271,29 +271,30 @@ function fenetreajoutdetravaux() {
       };
       reader.readAsDataURL(file);//permet de lire l'image
 
-      //ajouter la function colorbouton
+      
     });
 
+/////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
+//fonction pour le changement du bouton valide
+/////////////////////////////////////////////
 
+const debloquagebouton = document.querySelector(".validation_couleur")
 
-//creer deux evenement pour  nouveautitre, nouvellecategorie
+function colorbouton() {//////////fonction pour modification du bouton en parametre les trois element a controler
 
-
-
-
-//function colorbouton(nouvellephoto, nouveautitre, nouvellecategorie) {//////////fonction pour modification du bouton en parametre les trois element a controler
-//
-//  
-//  if (nouvellephoto.value === "" ||nouveautitre.value === "" || nouvellecategorie.value === "") {//////////si les trois champs sont rempli
-//      valideajout.classList.add("bouton_valide_ajout_color")//////////changer la couleur
-//      submit.disabled = false;//////////debloquer le bouton
-//  } else {
-//      submit.disabled = true;/////////bloquer le bouton
-//  }
-// }
-//colorbouton()//////////////////quand la declancher(a chaque modification d'un element)
-//
-
+   debloquagebouton.forEach((nouvellephoto, nouveautitre, nouvellecategorie) => {
+  if (nouvellephoto.value === "" ||nouveautitre.value === "" || nouvellecategorie.value === "") {//////////si les trois champs sont rempli
+      valideajout.classList.add("bouton_valide_ajout_color")//////////changer la couleur
+      submit.disabled = false;//////////debloquer le bouton
+  } else {
+      submit.disabled = true;/////////bloquer le bouton
+  }
+ })
+ }
+colorbouton()//////////////////quand la declancher(a chaque modification d'un element)
+////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////
 
     // ajout de travaux
     function creationnouveautravaux() {
