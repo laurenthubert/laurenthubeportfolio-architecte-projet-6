@@ -278,21 +278,21 @@ function fenetreajoutdetravaux() {
 /////////////////////////////////////////////////////////////////////////////////////
 //fonction pour le changement du bouton valide
 /////////////////////////////////////////////
-
-const debloquagebouton = document.querySelector(".validation_couleur")
-
-function colorbouton() {//////////fonction pour modification du bouton en parametre les trois element a controler
-
-   debloquagebouton.forEach((nouvellephoto, nouveautitre, nouvellecategorie) => {
-  if (nouvellephoto.value === "" ||nouveautitre.value === "" || nouvellecategorie.value === "") {//////////si les trois champs sont rempli
-      valideajout.classList.add("bouton_valide_ajout_color")//////////changer la couleur
-      submit.disabled = false;//////////debloquer le bouton
-  } else {
-      submit.disabled = true;/////////bloquer le bouton
-  }
- })
- }
-colorbouton()//////////////////quand la declancher(a chaque modification d'un element)
+//
+//const debloquagebouton = document.querySelector(".validation_couleur")
+//
+//function colorbouton() {//////////fonction pour modification du bouton en parametre les trois element a controler
+//
+//   debloquagebouton.forEach((nouvellephoto, nouveautitre, nouvellecategorie) => {
+//  if (nouvellephoto.value === "" ||nouveautitre.value === "" || nouvellecategorie.value === "") {//////////si les trois champs sont rempli
+//      valideajout.classList.add("bouton_valide_ajout_color")//////////changer la couleur
+//      submit.disabled = false;//////////debloquer le bouton
+//  } else {
+//      submit.disabled = true;/////////bloquer le bouton
+//  }
+// })
+// }
+//colorbouton()//////////////////quand la declancher(a chaque modification d'un element)
 ////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////
 
