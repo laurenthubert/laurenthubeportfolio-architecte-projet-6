@@ -28,7 +28,7 @@ function demmandeconnexion() {
       let token = data.token; //stocage des elements de l'api
       localStorage.setItem("Token", token); //setItem ajout au stocage
       if (token) {
-        window.location.href = "index.html";
+        window.location.href = "../index.html";
       } else {
         messageerreur.style.visibility = "visible";
         localStorage.removeItem("Token"); //supression du token pour ne pas acceder a la page projet en cliquant dans projet sur le header
