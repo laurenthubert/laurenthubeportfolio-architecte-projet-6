@@ -18,16 +18,25 @@
 </head>
 
 <body>
-	<header>
-		<h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
-		<nav>
-			<ul>
-				<li>projets</li>
-				<li>contact</li>
-				<li><a href="login.html" class="login_logout">login</a></li>
-				<li><img src="assets/icons/instagram.png" alt="Instagram" /></li>
-			</ul>
-		</nav>
+	<header class="header_position">
+		<div class="banniere">
+			<button class="banniere_position bouton_banniere">
+				<i class="fa-regular fa-pen-to-square"></i>
+				<p>Mode édition</p>
+			</button>
+			<button class="bouton_publier">Publier les changements</button>
+		</div>
+		<div class="position_nav">
+			<h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
+			<nav>
+				<ul>
+					<li>projets</li>
+					<li>contact</li>
+					<li><a href="login.html" class="login_logout">login</a></li>
+					<li><img src="assets/icons/instagram.png" alt="Instagram" /></li>
+				</ul>
+			</nav>
+		</div>
 	</header>
 	<main>
 		<!--dialog permet de ne pas etre vu elle doit etre appellee-->
@@ -45,7 +54,7 @@
 		<section id="introduction">
 			<figure>
 				<img src="assets/images/sophie-bluel.png" alt="portrait de sophie Bluel" />
-		<!--ajout du bouton modal-->		
+				<!--ajout du bouton modal-->
 				<button class="bouton_modal bouton_presentation">
 					<i class="fa-regular fa-pen-to-square"></i>
 					<p class="marge_modal">Modifier</p>
@@ -74,7 +83,7 @@
 			<!--ajout d'un div pour position du bouton modal-->
 			<div class="groupe_bouton_h2">
 				<h2>Mes Projets</h2>
-				<!--ajout du bouton modal-->		
+				<!--ajout du bouton modal-->
 				<button class="bouton_modal js_ouvrefenetre">
 					<i class="fa-regular fa-pen-to-square"></i>
 					<p>Modifier</p>

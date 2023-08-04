@@ -9,6 +9,7 @@ const ouverturefenetre = document.querySelector(".js_ouvrefenetre");
 const fermedialoge = document.querySelector(".position_icon_croix");
 const affichagetraveauxmodal = document.querySelector(".images_modal");
 const contenufenetreajout = document.querySelector(".modal_boite");
+const editingToolsBanner = document.querySelector(".banniere");
 
 //liste des variable
 let listedetravaux = [];
@@ -77,6 +78,20 @@ triparfiltre();//declanchement de fonction pour le tri par categorie
 /////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////// utilisateur connecté///////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////
+//affichage de la banniere
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 //verification de la connection
 let token = localStorage.getItem("Token");//stocage du token valide
@@ -90,11 +105,13 @@ if (token) {
 
 //fonction pour apparition du logout et les modification filtre et bouton modal
 function modifhtml() {
+  editingToolsBanner.style.display = "flex";
   login.innerHTML = "logout";//changement du login en logout
   goupedesfiltres.innerHTML = "";//suppression des filtres
   boutonsdesmodal.forEach((button) => {//faire le tour des boutons  modifier
     button.style.display = "flex";//faire apparaitre les boutons
   });
+ 
 }
 if (token) {//verifier la validitee du token
   modifhtml();//declancher les modif
@@ -229,7 +246,7 @@ function fenetreajoutdetravaux() {
               <p class="message_valide">Formulaire enregistré !</p>
               <p class="message_erreure_envoi">Une erreur s'est produite lors de la soumission du formulaire</p>
               <span class="ligne"></span>
-              <button class="bouton_valide_ajout">Valider</button>
+              <button class="bouton_valide_ajout"<!-- disabled--> >Valider</button>
           </div>
       `;
 
@@ -243,6 +260,7 @@ function fenetreajoutdetravaux() {
     const messagevalide = document.querySelector(".message_valide");
     const erreureenvoi = document.querySelector(".message_erreure_envoi");
    const valideajout = document.querySelector(".bouton_valide_ajout");
+///////////////////const debloquagebouton = document.querySelector(".validation_couleur")
 
     //Fonction de retour sur la modale
     modalflecheretour.addEventListener("click", () => {//au click sur la fleche
@@ -278,23 +296,20 @@ function fenetreajoutdetravaux() {
 /////////////////////////////////////////////////////////////////////////////////////
 //fonction pour le changement du bouton valide
 /////////////////////////////////////////////
+
+//function debloquage() {
+//  
+//  debloquagebouton.addEventListener("input" , () =>{ 
 //
-//const debloquagebouton = document.querySelector(".validation_couleur")
-//
-//function colorbouton() {//////////fonction pour modification du bouton en parametre les trois element a controler
-//
-//   debloquagebouton.forEach((nouvellephoto, nouveautitre, nouvellecategorie) => {
-//  if (nouvellephoto.value === "" ||nouveautitre.value === "" || nouvellecategorie.value === "") {//////////si les trois champs sont rempli
-//      valideajout.classList.add("bouton_valide_ajout_color")//////////changer la couleur
-//      submit.disabled = false;//////////debloquer le bouton
+//  if (nouvellephoto.value === "" && nouveautitre === "" && nouvellecategorie === "") {
+//      valideajout.classList.add("bouton_valide_ajout_color");
+//      valideajout.removeAttribute("disabled");
 //  } else {
-//      submit.disabled = true;/////////bloquer le bouton
-//  }
-// })
-// }
-//colorbouton()//////////////////quand la declancher(a chaque modification d'un element)
-////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////
+//      valideajout.classList.remove("bouton_valide_ajout_color");
+//      valideajout.setAttribute("disabled", true);
+//  }}
+//)};
+
 
     // ajout de travaux
     function creationnouveautravaux() {
