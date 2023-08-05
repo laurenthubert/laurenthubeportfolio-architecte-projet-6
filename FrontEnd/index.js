@@ -9,7 +9,7 @@ const ouverturefenetre = document.querySelector(".js_ouvrefenetre");
 const fermedialoge = document.querySelector(".position_icon_croix");
 const affichagetraveauxmodal = document.querySelector(".images_modal");
 const contenufenetreajout = document.querySelector(".modal_boite");
-const editingToolsBanner = document.querySelector(".banniere");
+const bannierevisible = document.querySelector(".banniere");
 
 //liste des variable
 let listedetravaux = [];
@@ -78,20 +78,6 @@ triparfiltre();//declanchement de fonction pour le tri par categorie
 /////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////// utilisateur connecté///////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////
-//affichage de la banniere
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 //verification de la connection
 let token = localStorage.getItem("Token");//stocage du token valide
@@ -105,7 +91,7 @@ if (token) {
 
 //fonction pour apparition du logout et les modification filtre et bouton modal
 function modifhtml() {
-  editingToolsBanner.style.display = "flex";
+  bannierevisible.style.display = "flex";//affichage de la banniere
   login.innerHTML = "logout";//changement du login en logout
   goupedesfiltres.innerHTML = "";//suppression des filtres
   boutonsdesmodal.forEach((button) => {//faire le tour des boutons  modifier
@@ -246,7 +232,7 @@ function fenetreajoutdetravaux() {
               <p class="message_valide">Formulaire enregistré !</p>
               <p class="message_erreure_envoi">Une erreur s'est produite lors de la soumission du formulaire</p>
               <span class="ligne"></span>
-              <button class="bouton_valide_ajout"<!-- disabled--> >Valider</button>
+              <button class="bouton_valide_ajout" disabled >Valider</button>
           </div>
       `;
 
@@ -260,12 +246,11 @@ function fenetreajoutdetravaux() {
     const messagevalide = document.querySelector(".message_valide");
     const erreureenvoi = document.querySelector(".message_erreure_envoi");
    const valideajout = document.querySelector(".bouton_valide_ajout");
-///////////////////const debloquagebouton = document.querySelector(".validation_couleur")
+
 
     //Fonction de retour sur la modale
     modalflecheretour.addEventListener("click", () => {//au click sur la fleche
       contenufenetreajout.innerHTML = contenuajoutdetraveauxHTML;//supprime le html 
-     /////////////////////////////////////////////////////////////// affichagetravaux(listedetravaux);//met a jour les ajouts
       fenetreajoutdetravaux();//permet d'aller et de revenir sur la fenetre
     });
 
@@ -283,32 +268,36 @@ function fenetreajoutdetravaux() {
         formElements.forEach((element) => {
             element.style.display = "none";//cache les elements
         });
-
         imageselectionne.style.display = "flex";//affiche l'image
-
       };
       reader.readAsDataURL(file);//permet de lire l'image
-
-      
     });
 
 /////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////
 //fonction pour le changement du bouton valide
-/////////////////////////////////////////////
+document.querySelector(".modal_ajout_de_travaux").addEventListener("input", boutonvalidecouleur);
 
-//function debloquage() {
-//  
-//  debloquagebouton.addEventListener("input" , () =>{ 
-//
-//  if (nouvellephoto.value === "" && nouveautitre === "" && nouvellecategorie === "") {
-//      valideajout.classList.add("bouton_valide_ajout_color");
-//      valideajout.removeAttribute("disabled");
-//  } else {
-//      valideajout.classList.remove("bouton_valide_ajout_color");
-//      valideajout.setAttribute("disabled", true);
-//  }}
-//)};
+
+function boutonvalidecouleur() {
+  const photo = document.querySelector("#photo");
+  const titre = document.querySelector("#titre").value;
+  const type = document.querySelector("#categorie").value;
+  const boutonok = document.querySelector(".bouton_valide_ajout");
+
+  if (photo.value && titre !== "" && type !== "") {
+      
+      boutonok.classList.add("bouton_valide_ajout_color");
+      boutonok.removeAttribute("disabled");
+  } else {
+      
+      boutonok.classList.remove("bouton_valide_ajout_color");
+      boutonok.setAttribute("disabled", true);
+  }
+};
+
+
+/////////////////////////////////////////////
 
 
     // ajout de travaux
@@ -344,9 +333,10 @@ function fenetreajoutdetravaux() {
           }
         });
       });
+       
     }
     creationnouveautravaux();
-    affichagedestravaux(listedetravaux)/////////////////////////////////////////////////////////
+    affichagedestravaux(listedetravaux)
   });
 }
 fenetreajoutdetravaux();
