@@ -30,7 +30,7 @@ function importdestravaux() {
 importdestravaux();//declanchement de la fonction pour la recuperation dan la fonction affichagedestravaux
 
 //insertion des travaux de l'api
-function affichagedestravaux(listedetravaux) {
+function affichagedestravauxhtml(listedetravaux) {
   travaux.innerHTML = "";//suppression du html existant
   listedetravaux.forEach((travail) => {//faire le tour de tous les elements et a chaque element=>
     
@@ -69,7 +69,7 @@ function triparfiltre() {
         );
         filtre.classList.add("filtre_actif");//ajout de la class
       }
-      affichagedestravaux(tableaudufiltre);//declancher de la fonction insertion des travaux dans le html
+      affichagedestravauxhtml(tableaudufiltre);//declancher de la fonction insertion des travaux dans le html
     });
   });
 }
@@ -131,7 +131,7 @@ fermeture();//declanchement de la fonction
 
 //affichage des travaux dans la modal
 function affichagetravaux(listedetravaux) {//reprendre fetch
-  let contenuaffichage = "";//variable pour contenir les traveau a afficher
+  let contenuaffichage = "";//variable pour contenir les travaux a afficher
   listedetravaux.forEach((travail) => {//faire le tour de tous les elements
     contenuaffichage += `<!---------------------------------------------------------------------------------------a chaque element creer-->
           <div class="position_travail_modal">
@@ -160,9 +160,9 @@ function affichagetravaux(listedetravaux) {//reprendre fetch
       fetch(`http://localhost:5678/api/works/${travailID}`, demandesuppression) //envoi a l'API delet
         .then((res) => {
           if (res.ok) {//si reponse valide
-            trash.parentElement.remove();//supprime les elements dans la fenetre
+            trash.parentElement.remove(); //supprime les elements dans la fenetre
             const supprimefigure = document.querySelector(`figure[data-id="${travailID}"]`); //relever l'elements a supprimer
-            supprimefigure.remove();//supprime le html
+            supprimefigure.remove(); //supprime le html
           }
         });
     });
@@ -251,6 +251,7 @@ function fenetreajoutdetravaux() {
     //Fonction de retour sur la modale
     modalflecheretour.addEventListener("click", () => {//au click sur la fleche
       contenufenetreajout.innerHTML = contenuajoutdetraveauxHTML;//supprime le html 
+      affichagetravaux(listedetravaux)
       fenetreajoutdetravaux();//permet d'aller et de revenir sur la fenetre
     });
 
@@ -285,14 +286,12 @@ function boutonvalidecouleur() {
   const type = document.querySelector("#categorie").value;
   const boutonok = document.querySelector(".bouton_valide_ajout");
 
-  if (photo.value && titre !== "" && type !== "") {
-      
-      boutonok.classList.add("bouton_valide_ajout_color");
-      boutonok.removeAttribute("disabled");
+  if (photo.value && titre !== "" && type !== "") {//condition requise
+      boutonok.classList.add("bouton_valide_ajout_color");//changemant de couleur
+      boutonok.removeAttribute("disabled");//debloquage du bouton
   } else {
-      
-      boutonok.classList.remove("bouton_valide_ajout_color");
-      boutonok.setAttribute("disabled", true);
+      boutonok.classList.remove("bouton_valide_ajout_color");//ne pas changer la couleur
+      boutonok.setAttribute("disabled", true);//blocage du bouton
   }
 };
 
@@ -328,15 +327,15 @@ function boutonvalidecouleur() {
             remplirchamps.style.display = "none"; //supprimer remplir champs
             messagevalide.style.display = "block";//avertir que l'operation est effectuer
           } else {
-            remplirchamps.style.display = "none";//si erreur lors de l'envoi
-            erreureenvoi.style.display = "block";
+            remplirchamps.style.display = "none";//
+            erreureenvoi.style.display = "block";//si erreur lors de l'envoi
           }
         });
       });
-       
     }
-    creationnouveautravaux();
-    affichagedestravaux(listedetravaux)
+    creationnouveautravaux()//lance l'ajout de nouveau travaux
+    affichagedestravauxhtml(listedetravaux)//insertion des travaux de l'api
   });
 }
-fenetreajoutdetravaux();
+fenetreajoutdetravaux();//fenetre pour l'ajout de travaux
+
