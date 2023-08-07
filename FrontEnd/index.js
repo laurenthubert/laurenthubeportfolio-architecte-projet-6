@@ -25,6 +25,7 @@ function importdestravaux() {
     .then((data) => {
       listedetravaux = data;
       affichagetravaux(listedetravaux); // Appel de la fonction après avoir récupéré les données
+      affichagedestravauxhtml(listedetravaux)//appel de la fonction pour mettre a jour
     });
 }
 importdestravaux();//declanchement de la fonction pour la recuperation dan la fonction affichagedestravaux
@@ -161,8 +162,7 @@ function affichagetravaux(listedetravaux) {//reprendre fetch
         .then((res) => {
           if (res.ok) {//si reponse valide
             trash.parentElement.remove(); //supprime les elements dans la fenetre
-            const supprimefigure = document.querySelector(`figure[data-id="${travailID}"]`); //relever l'elements a supprimer
-            supprimefigure.remove(); //supprime le html
+
           }
         });
     });
