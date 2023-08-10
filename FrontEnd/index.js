@@ -19,7 +19,7 @@ let categories = [];
 /////////////////////////////////////////////////////////////////////////////////////////
 
 //contact avec l'API pour la liste de travaux 
-function importdestravaux() {
+async function importdestravaux() {
   fetch("http://localhost:5678/api/works")
     .then((res) => res.json())
     .then((data) => {
@@ -65,7 +65,6 @@ function triparfiltre() {
         filtre.classList.add("filtre_actif");//ajouter la class
       } else {//autre tri
         tableaudufiltre = listedetravaux.filter(//condition pour l'ensemble des autres trie
-         
           (travailaafficher) => travailaafficher.category.name === valeurdufitre  //retourne  tableau avec les travaux valeur filtre =valeur categorie
         );
         filtre.classList.add("filtre_actif");//ajout de la class
@@ -158,11 +157,20 @@ function affichagetravaux(listedetravaux) {//reprendre fetch
   iconsuppression.forEach((trash) => {//faire le tour des poubelles
     trash.addEventListener("click", () => {//au click
       let travailID = trash.getAttribute("data-id");//variable qui releve ID
+    
       fetch(`http://localhost:5678/api/works/${travailID}`, demandesuppression) //envoi a l'API delet
         .then((res) => {
           if (res.ok) {//si reponse valide
             trash.parentElement.remove(); //supprime les elements dans la fenetre
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////mettre a jour l'affichage////////////////////////////////////////////////////////////
 
+  
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
           }
         });
     });
@@ -251,7 +259,7 @@ function fenetreajoutdetravaux() {
     //Fonction de retour sur la modale
     modalflecheretour.addEventListener("click", () => {//au click sur la fleche
       contenufenetreajout.innerHTML = contenuajoutdetraveauxHTML;//supprime le html 
-      affichagetravaux(listedetravaux)
+      affichagetravaux(listedetravaux)//met a jour les modifications
       fenetreajoutdetravaux();//permet d'aller et de revenir sur la fenetre
     });
 
@@ -326,15 +334,24 @@ function boutonvalidecouleur() {
           if (res.ok) {                            //si oui
             remplirchamps.style.display = "none"; //supprimer remplir champs
             messagevalide.style.display = "block";//avertir que l'operation est effectuer
+   /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////mettre a jour l'affichage////////////////////////////////////////////////////////////
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
           } else {
             remplirchamps.style.display = "none";//
             erreureenvoi.style.display = "block";//si erreur lors de l'envoi
           }
         });
       });
-    }
+    } 
     creationnouveautravaux()//lance l'ajout de nouveau travaux
-    affichagedestravauxhtml(listedetravaux)//insertion des travaux de l'api
+  
+   
   });
 }
 fenetreajoutdetravaux();//fenetre pour l'ajout de travaux
