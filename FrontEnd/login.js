@@ -19,9 +19,7 @@ function demmandeconnexion() {
     mode: "cors",
     credentials: "same-origin",
   };
-
-  //comparer les identifiants et action a effectuer
-  //recuperation des elementsdans l'api
+//comparer les identifiants et action a effectuer//recuperation des elementsdans l'api
   fetch("http://localhost:5678/api/users/login", demmandeconnexion)
     .then((res) => res.json())
     .then((data) => {

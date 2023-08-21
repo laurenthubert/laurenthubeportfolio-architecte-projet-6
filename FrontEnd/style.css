@@ -236,7 +236,7 @@ li:hover {
   display: flex;
   background: transparent;
   border: none;
-  gap: 5px;
+  width: 150px;
   font-size: 15px;
 }
 .bouton_publier {
@@ -246,6 +246,9 @@ li:hover {
   border-radius: 60px;
   padding: 10px 15px 10px 15px;
   cursor: pointer;
+}
+.fa-regular {
+  margin-right: 10px;
 }
 .position_nav {
   display: flex;
@@ -449,7 +452,7 @@ h3 {
 }
 .icon_trash {
   position: absolute;
-  right: 5px;
+  right: -5px;
   top: 5px;
   cursor: pointer;
 }

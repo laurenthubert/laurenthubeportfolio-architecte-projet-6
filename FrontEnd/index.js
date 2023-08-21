@@ -14,12 +14,9 @@ const bannierevisible = document.querySelector(".banniere");
 //liste des variable
 let listedetravaux = [];
 let categories = [];
-//////////////////////////////////////////////////////////////////////////////////////////
-//JS pour la recuperation des travaux et le tri///////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////
 
 //contact avec l'API pour la liste de travaux 
-async function importdestravaux() {
+function importdestravaux() {
   fetch("http://localhost:5678/api/works")
     .then((res) => res.json())
     .then((data) => {
@@ -34,7 +31,7 @@ importdestravaux();//declanchement de la fonction pour la recuperation dan la fo
 function affichagedestravauxhtml(listedetravaux) {
   travaux.innerHTML = "";//suppression du html existant
   listedetravaux.forEach((travail) => {//faire le tour de tous les elements et a chaque element=>
-    
+
     const figure = document.createElement("figure"); //creation de la balise figure
     travaux.appendChild(figure);//ajout de la balise
     figure.setAttribute("data-id", travail.id); //ajoute d'un attribut
@@ -89,7 +86,7 @@ if (token) {
   });
 }
 
-//fonction pour apparition du logout et les modification filtre et bouton modal
+//fonction pour transformation du logout et les modification filtre et bouton modal
 function modifhtml() {
   bannierevisible.style.display = "flex";//affichage de la banniere
   login.innerHTML = "logout";//changement du login en logout
@@ -97,8 +94,8 @@ function modifhtml() {
   boutonsdesmodal.forEach((button) => {//faire le tour des boutons  modifier
     button.style.display = "flex";//faire apparaitre les boutons
   });
- 
 }
+
 if (token) {//verifier la validitee du token
   modifhtml();//declancher les modif
 }
@@ -145,8 +142,8 @@ function affichagetravaux(listedetravaux) {//reprendre fetch
   affichagetraveauxmodal.innerHTML = contenuaffichage;//affichage de l'ensemble des elements
 
   const iconsuppression = document.querySelectorAll(".icon_trash");//constant apres la creation du html
-  
-  //suppression des travaux dans la modal
+
+//suppression des travaux dans la modal
   let demandesuppression = {                  //
     method: "DELETE",                         //autorisation avec verification du token
     headers: {                                //
@@ -156,17 +153,18 @@ function affichagetravaux(listedetravaux) {//reprendre fetch
 
   iconsuppression.forEach((trash) => {//faire le tour des poubelles
     trash.addEventListener("click", () => {//au click
-      let travailID = trash.getAttribute("data-id");//variable qui releve ID
-    
+      const travailID = trash.getAttribute("data-id");//variable qui releve ID
+
       fetch(`http://localhost:5678/api/works/${travailID}`, demandesuppression) //envoi a l'API delet
-        .then((res) => {
-          if (res.ok) {//si reponse valide
+       .then((res) => {
+         if (res.ok) {//si reponse valide
             trash.parentElement.remove(); //supprime les elements dans la fenetre
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 ///////////////////////mettre a jour l'affichage////////////////////////////////////////////////////////////
 
-  
 
+const miseajourhtml = document.querySelector(`figure[data-id="${travailID}"]`);
+miseajourhtml.remove();
 
 
 
@@ -177,9 +175,8 @@ function affichagetravaux(listedetravaux) {//reprendre fetch
   });
 }
 
-///////////////////////////////////////////////
+
 //creation ajout des nouveaux travaux
-//////////////////////////////////////////////
 
 //contacte avec l'API categorie
 function importdescategories() {
@@ -209,7 +206,7 @@ function fenetreajoutdetravaux() {
     contenuajoutdetraveauxHTML = contenufenetreajout.innerHTML;//suppression du html existant
 
     contenufenetreajout.innerHTML = "";
-    //creation de la page
+//creation de la page
     contenufenetreajout.innerHTML = `
           <i class="fa-solid fa-arrow-left modal_fleche_retour"></i>
           <div class="modal_ajout_de_travaux">
@@ -244,7 +241,7 @@ function fenetreajoutdetravaux() {
           </div>
       `;
 
-    //constant apres la creation du html
+//constant apres la creation du html
      const modalflecheretour = document.querySelector(".modal_fleche_retour");
       const imageselectionne = document.querySelector(".image_selectionne");
     const nouvellephoto = document.getElementById("photo");
@@ -256,14 +253,14 @@ function fenetreajoutdetravaux() {
    const valideajout = document.querySelector(".bouton_valide_ajout");
 
 
-    //Fonction de retour sur la modale
+//Fonction de retour sur la modale
     modalflecheretour.addEventListener("click", () => {//au click sur la fleche
       contenufenetreajout.innerHTML = contenuajoutdetraveauxHTML;//supprime le html 
       affichagetravaux(listedetravaux)//met a jour les modifications
       fenetreajoutdetravaux();//permet d'aller et de revenir sur la fenetre
     });
 
-    //Affichage de l'image lors de sa selection
+//Affichage de l'image lors de sa selection
     nouvellephoto.addEventListener("change", () => { //au changemant dans l'affichage du html
 
       const file = nouvellephoto.files[0];     //
@@ -282,8 +279,6 @@ function fenetreajoutdetravaux() {
       reader.readAsDataURL(file);//permet de lire l'image
     });
 
-/////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////
 //fonction pour le changement du bouton valide
 document.querySelector(".modal_ajout_de_travaux").addEventListener("input", boutonvalidecouleur);
 
@@ -303,11 +298,13 @@ function boutonvalidecouleur() {
   }
 };
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/////////////////////////////////////////////
 
 
-    // ajout de travaux
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// ajout de travaux
     function creationnouveautravaux() {
       valideajout.addEventListener("click", () => {//au click sur valider
         if ( nouvellephoto.value === "" || nouveautitre.value === "" || nouvellecategorie.value === ""//controler que les trois champs sont rempli
@@ -334,7 +331,7 @@ function boutonvalidecouleur() {
           if (res.ok) {                            //si oui
             remplirchamps.style.display = "none"; //supprimer remplir champs
             messagevalide.style.display = "block";//avertir que l'operation est effectuer
-   /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 ///////////////////////mettre a jour l'affichage////////////////////////////////////////////////////////////
 
 
@@ -350,8 +347,6 @@ function boutonvalidecouleur() {
       });
     } 
     creationnouveautravaux()//lance l'ajout de nouveau travaux
-  
-   
   });
 }
 fenetreajoutdetravaux();//fenetre pour l'ajout de travaux
