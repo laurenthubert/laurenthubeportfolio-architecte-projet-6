@@ -19,7 +19,7 @@ function demmandeconnexion() {
     mode: "cors",
     credentials: "same-origin",
   };
-//comparer les identifiants et action a effectuer//recuperation des elementsdans l'api
+  //comparer les identifiants et action a effectuer//recuperation des elementsdans l'api
   fetch("http://localhost:5678/api/users/login", demmandeconnexion)
     .then((res) => res.json())
     .then((data) => {
@@ -36,12 +36,13 @@ function demmandeconnexion() {
 
 //mode de demmande de validation
 //au clavier
-inputs.forEach(() => {
-  boutonconnecter.addEventListener("keydown", (e) => {//demmande de validation par le clavier
-    if (e.key === "Enter") {//choix de la touche 
+  boutonconnecter.addEventListener("keydown", (e) => {
+    //demmande de validation par le clavier
+    if (e.key === "Enter") {
+      //choix de la touche
       demmandeconnexion();
     }
   });
-});
+
 //au click
 boutonconnecter.addEventListener("click", demmandeconnexion);

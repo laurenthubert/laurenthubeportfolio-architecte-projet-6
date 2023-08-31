@@ -15,98 +15,98 @@ const bannierevisible = document.querySelector(".banniere");
 let listedetravaux = [];
 let categories = [];
 
-//contact avec l'API pour la liste de travaux 
+//contact avec l'API pour la liste de travaux
 function importdestravaux() {
   fetch("http://localhost:5678/api/works")
     .then((res) => res.json())
     .then((data) => {
       listedetravaux = data;
       affichagetravaux(listedetravaux); // Appel de la fonction après avoir récupéré les données
-      affichagedestravauxhtml(listedetravaux)//appel de la fonction pour mettre a jour
+      affichagedestravauxhtml(listedetravaux); //appel de la fonction pour mettre a jour
     });
 }
-importdestravaux();//declanchement de la fonction pour la recuperation dan la fonction affichagedestravaux
+importdestravaux(); //declanchement de la fonction pour la recuperation dan la fonction affichagedestravaux
 
 //insertion des travaux de l'api
 function affichagedestravauxhtml(listedetravaux) {
-  travaux.innerHTML = "";//suppression du html existant
+  travaux.innerHTML = ""; //suppression du html existant
   listedetravaux.forEach((travail) => {//faire le tour de tous les elements et a chaque element=>
-
+    
     const figure = document.createElement("figure"); //creation de la balise figure
-    travaux.appendChild(figure);//ajout de la balise
+    travaux.appendChild(figure); //ajout de la balise
     figure.setAttribute("data-id", travail.id); //ajoute d'un attribut
 
     const image = document.createElement("img"); //ajout de l'image dans la balise figure
-    image.src = travail.imageUrl;//ajout du lien
+    image.src = travail.imageUrl; //ajout du lien
     image.alt = travail.title;
-    figure.appendChild(image);//ajout de la balise
+    figure.appendChild(image); //ajout de la balise
 
     const figcaption = document.createElement("figcaption"); //ajout du texte dans la balise figure
-    figcaption.innerHTML = travail.title;//ajout du lien
-    figure.appendChild(figcaption);//ajout de la balise
+    figcaption.innerHTML = travail.title; //ajout du lien
+    figure.appendChild(figcaption); //ajout de la balise
   });
 }
 
 //fonction pour le tri par categorie
 function triparfiltre() {
   filtres.forEach((filtre) => {//faire le tour des filtres
-    const valeurdufitre = filtre.textContent;//donner une valeur 
+    const valeurdufitre = filtre.textContent; //donner une valeur
 
     filtre.addEventListener("click", () => {//au click
       filtres.forEach((filtre) => {//faire le tour des filtres
-        filtre.classList.remove("filtre_actif");//supprimer la class
+        filtre.classList.remove("filtre_actif"); //supprimer la class
       });
-      let tableaudufiltre = [];//resulat a afficher etant un tableau
-      if (valeurdufitre === "Tous") { //definir un premier tri
-        tableaudufiltre = listedetravaux;//resultat a afficher
-        filtre.classList.add("filtre_actif");//ajouter la class
+      let tableaudufiltre = []; //resulat a afficher etant un tableau
+      if (valeurdufitre === "Tous") {//definir un premier tri
+        tableaudufiltre = listedetravaux; //resultat a afficher
+        filtre.classList.add("filtre_actif"); //ajouter la class
       } else {//autre tri
         tableaudufiltre = listedetravaux.filter(//condition pour l'ensemble des autres trie
-          (travailaafficher) => travailaafficher.category.name === valeurdufitre  //retourne  tableau avec les travaux valeur filtre =valeur categorie
+          (travailaafficher) => travailaafficher.category.name === valeurdufitre //retourne  tableau avec les travaux valeur filtre =valeur categorie
         );
-        filtre.classList.add("filtre_actif");//ajout de la class
+        filtre.classList.add("filtre_actif"); //ajout de la class
       }
-      affichagedestravauxhtml(tableaudufiltre);//declancher de la fonction insertion des travaux dans le html
+      affichagedestravauxhtml(tableaudufiltre); //declancher de la fonction insertion des travaux dans le html
     });
   });
 }
-triparfiltre();//declanchement de fonction pour le tri par categorie
+triparfiltre(); //declanchement de fonction pour le tri par categorie
 
 /////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////// utilisateur connecté///////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////
 
 //verification de la connection
-let token = localStorage.getItem("Token");//stocage du token valide
+let token = localStorage.getItem("Token"); //stocage du token valide
 
 // mode de deconnection
 if (token) {
   login.addEventListener("click", () => {//au click sur logout
-    localStorage.removeItem("Token");//supprimer le token
+    localStorage.removeItem("Token"); //supprimer le token
   });
 }
 
 //fonction pour transformation du logout et les modification filtre et bouton modal
 function modifhtml() {
-  bannierevisible.style.display = "flex";//affichage de la banniere
-  login.innerHTML = "logout";//changement du login en logout
-  goupedesfiltres.innerHTML = "";//suppression des filtres
+  bannierevisible.style.display = "flex"; //affichage de la banniere
+  login.innerHTML = "logout"; //changement du login en logout
+  goupedesfiltres.innerHTML = ""; //suppression des filtres
   boutonsdesmodal.forEach((button) => {//faire le tour des boutons  modifier
-    button.style.display = "flex";//faire apparaitre les boutons
+    button.style.display = "flex"; //faire apparaitre les boutons
   });
-}
+}//fonction appellee plus tard
 
 if (token) {//verifier la validitee du token
-  modifhtml();//declancher les modif
+  modifhtml(); //declancher les modif
 }
 
 //apparition de la fenetre dialog au click sur modifier
 function ouverture() {
   ouverturefenetre.addEventListener("click", () => {//mode de declanchement
-    modal.showModal();//ouverture de la modal
+    modal.showModal(); //ouverture de la modal
   });
 }
-ouverture();//declanchement de la fonction
+ouverture(); //declanchement de la fonction
 
 //fermeture de la fenetre dialoge (croix , click exterieur , echap)
 function fermeture() {
@@ -124,11 +124,11 @@ function fermeture() {
     }
   });
 }
-fermeture();//declanchement de la fonction
+fermeture(); //declanchement de la fonction
 
 //affichage des travaux dans la modal
 function affichagetravaux(listedetravaux) {//reprendre fetch
-  let contenuaffichage = "";//variable pour contenir les travaux a afficher
+  let contenuaffichage = ""; //variable pour contenir les travaux a afficher
   listedetravaux.forEach((travail) => {//faire le tour de tous les elements
     contenuaffichage += `<!---------------------------------------------------------------------------------------a chaque element creer-->
           <div class="position_travail_modal">
@@ -139,74 +139,68 @@ function affichagetravaux(listedetravaux) {//reprendre fetch
           </div>
       `;
   });
-  affichagetraveauxmodal.innerHTML = contenuaffichage;//affichage de l'ensemble des elements
+  affichagetraveauxmodal.innerHTML = contenuaffichage; //affichage de l'ensemble des elements
 
-  const iconsuppression = document.querySelectorAll(".icon_trash");//constant apres la creation du html
+  const iconsuppression = document.querySelectorAll(".icon_trash"); //constant apres la creation du html
 
-//suppression des travaux dans la modal
-  let demandesuppression = {                  //
-    method: "DELETE",                         //autorisation avec verification du token
-    headers: {                                //
-      Authorization: `Bearer ${token}`,       //
+  //suppression des travaux dans la modal
+  let demandesuppression = {
+
+    method: "DELETE", //autorisation avec verification du token
+    headers: {
+      Authorization: `Bearer ${token}`,
     },
   };
 
   iconsuppression.forEach((trash) => {//faire le tour des poubelles
     trash.addEventListener("click", () => {//au click
-      const travailID = trash.getAttribute("data-id");//variable qui releve ID
+
+      const travailID = trash.getAttribute("data-id"); //variable qui releve ID
 
       fetch(`http://localhost:5678/api/works/${travailID}`, demandesuppression) //envoi a l'API delet
-       .then((res) => {
-         if (res.ok) {//si reponse valide
+        .then((res) => {
+          if (res.ok) {//si reponse valide
             trash.parentElement.remove(); //supprime les elements dans la fenetre
-
-///////////////////////mettre a jour l'affichage////////////////////////////////////////////////////////////
-
-
-const miseajourhtml = document.querySelector(`figure[data-id="${travailID}"]`);
-miseajourhtml.remove();
-
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
+            const miseajourhtml = document.querySelector(`figure[data-id="${travailID}"]`
+            ); 
+            miseajourhtml.remove();///mettre a jour l'affichage
           }
         });
     });
   });
 }
 
-
+///////////////////////////////////////
 //creation ajout des nouveaux travaux
+/////////////////////////////////////
 
 //contacte avec l'API categorie
 function importdescategories() {
   fetch("http://localhost:5678/api/categories")
     .then((res) => res.json())
     .then((data) => {
-      categories = data;//liste des caregories
+      categories = data; //liste des caregories
     });
 }
-importdescategories();//declanchements de la fonction
+importdescategories(); //declanchements de la fonction
 
-//ajouter une liste categorie 
+//ajouter une liste categorie
 function generercategorie() {
-  let categorieHTML = "";//variable pour contenir categories
+  let categorieHTML = ""; //variable pour contenir categories
   categories.forEach((category) => {//faire le tour de la liste recu
-    categorieHTML += `<option value="${category.id}">${category.name}</option>`;//creer le html a chaque categorie avec le nom et ID
+    categorieHTML += `<option value="${category.id}">${category.name}</option>`; //creer le html a chaque categorie avec le nom et ID
   });
-  return categorieHTML;//renvoi la variable conpletee
-}//fonction appellee plus tard
+  return categorieHTML; //renvoi la variable conpletee
+} //fonction appellee plus tard
 
 //fenetre pour l'ajout de travaux
 function fenetreajoutdetravaux() {
-  let contenuajoutdetraveauxHTML = "";//variable pour contenir la page ajout de travail
+  let contenuajoutdetraveauxHTML = ""; //variable pour contenir la page ajout de travail
   const boutonfenetreajout = document.querySelector(".modal_ajouter");
 
   boutonfenetreajout.addEventListener("click", () => {//au click sur ajouter une photo
-    contenuajoutdetraveauxHTML = contenufenetreajout.innerHTML;//suppression du html existant
-
-    contenufenetreajout.innerHTML = "";
-//creation de la page
+    contenuajoutdetraveauxHTML = contenufenetreajout.innerHTML; //suppression du html existant
+    contenufenetreajout.innerHTML = "";//creation de la page
     contenufenetreajout.innerHTML = `
           <i class="fa-solid fa-arrow-left modal_fleche_retour"></i>
           <div class="modal_ajout_de_travaux">
@@ -228,7 +222,7 @@ function fenetreajoutdetravaux() {
                           <label for="categorie">Catégorie</label>
                           <select name="categorie" id="categorie">
                               <option value=""></option>          <!------------------------------------------------------->
-                              ${generercategorie()}               <!--import de la variable pour afficher les categories--->
+                              ${generercategorie()}               <!--import de la fonction pour afficher les categories--->
                           </select>                               <!------------------------------------------------------->
                       </div>
                   </div>
@@ -241,113 +235,124 @@ function fenetreajoutdetravaux() {
           </div>
       `;
 
-//constant apres la creation du html
-     const modalflecheretour = document.querySelector(".modal_fleche_retour");
-      const imageselectionne = document.querySelector(".image_selectionne");
+    //constant apres la creation du html
+    const modalflecheretour = document.querySelector(".modal_fleche_retour");
+    const imageselectionne = document.querySelector(".image_selectionne");
     const nouvellephoto = document.getElementById("photo");
     const nouveautitre = document.getElementById("titre");
     const nouvellecategorie = document.getElementById("categorie");
     const remplirchamps = document.querySelector(".message_remplir_champs");
     const messagevalide = document.querySelector(".message_valide");
     const erreureenvoi = document.querySelector(".message_erreure_envoi");
-   const valideajout = document.querySelector(".bouton_valide_ajout");
+    const valideajout = document.querySelector(".bouton_valide_ajout");
 
-
-//Fonction de retour sur la modale
+    //retour sur la modale
     modalflecheretour.addEventListener("click", () => {//au click sur la fleche
-      contenufenetreajout.innerHTML = contenuajoutdetraveauxHTML;//supprime le html 
-      affichagetravaux(listedetravaux)//met a jour les modifications
-      fenetreajoutdetravaux();//permet d'aller et de revenir sur la fenetre
+      contenufenetreajout.innerHTML = contenuajoutdetraveauxHTML; //supprime le html
+      fenetreajoutdetravaux(); //permet d'aller et de revenir sur la fenetre
     });
 
-//Affichage de l'image lors de sa selection
-    nouvellephoto.addEventListener("change", () => { //au changemant dans l'affichage du html
+    //Affichage de l'image lors de sa selection
+    nouvellephoto.addEventListener("change", () => {//au changemant dans l'affichage du html
 
-      const file = nouvellephoto.files[0];     //
-      const reader = new FileReader();        //permet de lire l'image 
-      reader.onload = (e) => {               //
-        imageselectionne.src = e.target.result;//envoi l'image selectionnee a son emplacement
+      const file = nouvellephoto.files[0];  //
+      const reader = new FileReader();     //permet de lire l'image
+      reader.onload = (e) => {            //
+        
+        imageselectionne.src = e.target.result; //envoi l'image selectionnee a son emplacement
 
-        const nouvelleimage = document.querySelector(".modal_ajout_image");// div de l'emplacement de la nouvelle image
-        const formElements = nouvelleimage.querySelectorAll(".modal_ajout_image > *");//supprime les elements mais pas le css
+        const nouvelleimage = document.querySelector(".modal_ajout_image"); // div de l'emplacement de la nouvelle image
+        const formElements = nouvelleimage.querySelectorAll(".modal_ajout_image > *" ); //supprime les elements mais pas le css
 
         formElements.forEach((element) => {
-            element.style.display = "none";//cache les elements
+          element.style.display = "none"; //cache les elements
         });
-        imageselectionne.style.display = "flex";//affiche l'image
+        imageselectionne.style.display = "flex"; //affiche l'image
       };
-      reader.readAsDataURL(file);//permet de lire l'image
+      reader.readAsDataURL(file); //permet de lire l'image
     });
 
-//fonction pour le changement du bouton valide
-document.querySelector(".modal_ajout_de_travaux").addEventListener("input", boutonvalidecouleur);
+    //fonction pour le changement du bouton valide
+    
+    function boutonvalidecouleur() {
+      const photo = document.querySelector("#photo");
+      const titre = document.querySelector("#titre").value;
+      const type = document.querySelector("#categorie").value;
+      const boutonok = document.querySelector(".bouton_valide_ajout");
 
+      if (photo.value && titre !== "" && type !== "") {//condition requise
+        boutonok.classList.add("bouton_valide_ajout_color"); //changemant de couleur
+        boutonok.removeAttribute("disabled"); //debloquage du bouton
+      } else {
+        boutonok.classList.remove("bouton_valide_ajout_color"); //ne pas changer la couleur
+        boutonok.setAttribute("disabled", true); //blocage du bouton
+      }
+    }
 
-function boutonvalidecouleur() {
-  const photo = document.querySelector("#photo");
-  const titre = document.querySelector("#titre").value;
-  const type = document.querySelector("#categorie").value;
-  const boutonok = document.querySelector(".bouton_valide_ajout");
+document.querySelector(".modal_ajout_de_travaux").addEventListener("input", boutonvalidecouleur);//mode de modification du bouton valider
 
-  if (photo.value && titre !== "" && type !== "") {//condition requise
-      boutonok.classList.add("bouton_valide_ajout_color");//changemant de couleur
-      boutonok.removeAttribute("disabled");//debloquage du bouton
-  } else {
-      boutonok.classList.remove("bouton_valide_ajout_color");//ne pas changer la couleur
-      boutonok.setAttribute("disabled", true);//blocage du bouton
-  }
-};
+    ///////////////////////mettre a jour l'affichage////////////////////////////////////////////////////////////
+    async function recupererDonneesSoumises(formData) {
+      try {
+        const reponse = await fetch("http://localhost:5678/api/works", {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,//verification d'autorisation 
+          },
+          body: formData, //contient les données a envoyer
+        });
+        if (reponse.ok) {
+          const donnees = await reponse.json();// Convertit la réponse en format JSON
+          return donnees; //données renvoyées par l'API après la soumission
+        } else {
+          throw new Error("Erreur lors de la soumission des données à l'API");//message d'erreure
+        }
+      } catch (erreur) {
+        console.error("Une erreur s'est produite :", erreur);//message "Une erreur s'est produite suivi du détail de l'erreur 
+        return null;// indique qu'une erreur s'est produite et qu'on ne peux pas continuer 
+      }
+    }
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    function fermerModalEtActualiser() {
+      setTimeout(() => {
+        location.reload(); // Recharge la page
+      }, 2000);
+    }
 
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-// ajout de travaux
+    // ajout de travaux
     function creationnouveautravaux() {
-      valideajout.addEventListener("click", () => {//au click sur valider
-        if ( nouvellephoto.value === "" || nouveautitre.value === "" || nouvellecategorie.value === ""//controler que les trois champs sont rempli
+      valideajout.addEventListener("click", async () => {//au click sur valider
+
+        if (  nouvellephoto.value === "" || nouveautitre.value === "" || nouvellecategorie.value === "" //controler que les trois champs sont rempli
         ) {
-          remplirchamps.style.display = "block";//
-          return;                               //si non informer l'utilisateur
+          remplirchamps.style.display = "block";  //si non informer l'utilisateur
+          return;// stop la fonction
         }
 
-        let formData = new FormData();// variable pour stocker le nouveau travail (construit cle/valeur)
+        const formData = new FormData(); // variable pour stocker le nouveau travail (construit cle/valeur)
 
-        formData.append("image", nouvellephoto.files[0]);          //
-        formData.append("title", nouveautitre.value);              //enregistrer les nouvelles valeurs
-        formData.append("category", nouvellecategorie.value);      //
+        formData.append("image", nouvellephoto.files[0]);      //
+        formData.append("title", nouveautitre.value);          //enregistrer les nouvelles valeurs
+        formData.append("category", nouvellecategorie.value);  //
 
-        let demmandeajout = {                         //
-          method: "POST",                             //envoi de l'autorisation
-          headers: {                                  //
-            Authorization: `Bearer ${token}`,         //
-          },
-          body: formData,                             //document a envoyer
-        };
+        const Donnéessoumises = await recupererDonneesSoumises(formData);
+        if (Donnéessoumises !== null) {
+          remplirchamps.style.display = "none";
+          messagevalide.style.display = "block";
 
-        fetch("http://localhost:5678/api/works", demmandeajout).then((res) => {//envoi a L'API
-          if (res.ok) {                            //si oui
-            remplirchamps.style.display = "none"; //supprimer remplir champs
-            messagevalide.style.display = "block";//avertir que l'operation est effectuer
+          importdestravaux();//mise a jour de la page
 
-///////////////////////mettre a jour l'affichage////////////////////////////////////////////////////////////
-
-
-
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
-          } else {
-            remplirchamps.style.display = "none";//
-            erreureenvoi.style.display = "block";//si erreur lors de l'envoi
-          }
-        });
+          // Fermer la modal après 2 secondes
+          valideajout.setAttribute("disabled", true); // Désactive le bouton "Valider"
+          fermerModalEtActualiser(); // Appelle la fonction pour fermer la modal et actualiser la page
+        } else {
+          remplirchamps.style.display = "none";
+          erreureenvoi.style.display = "block";
+          console.error("La soumission des données a échoué");
+        }
       });
-    } 
-    creationnouveautravaux()//lance l'ajout de nouveau travaux
+    }
+    creationnouveautravaux();// Appel initial de la fonction
   });
 }
-fenetreajoutdetravaux();//fenetre pour l'ajout de travaux
-
+fenetreajoutdetravaux();// Appel initial de la fonction
